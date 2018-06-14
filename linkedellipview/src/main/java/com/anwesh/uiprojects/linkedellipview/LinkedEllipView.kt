@@ -151,4 +151,27 @@ class LinkedEllipView(ctx : Context) : View(ctx) {
             curr.startUpdating(startcb)
         }
     }
+
+    data class LERenderer (var view : LinkedEllipView) {
+
+        private val animator : LEAnimator = LEAnimator(view)
+
+        private val linkedEllip : LinkedEllip = LinkedEllip(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#212121"))
+            linkedEllip.draw(canvas, paint)
+            animator.animate {
+                linkedEllip.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            linkedEllip.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
