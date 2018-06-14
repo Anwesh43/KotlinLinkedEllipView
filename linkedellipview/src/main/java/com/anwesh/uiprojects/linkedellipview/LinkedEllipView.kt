@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.linkedellipview
  * Created by anweshmishra on 14/06/18.
  */
 
+import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.MotionEvent
@@ -174,6 +175,13 @@ class LinkedEllipView(ctx : Context) : View(ctx) {
             linkedEllip.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) {
+            val view = LinkedEllipView(activity)
+            activity.setContentView(view)
         }
     }
 }
