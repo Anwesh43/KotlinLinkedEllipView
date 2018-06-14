@@ -6,6 +6,7 @@ package com.anwesh.uiprojects.linkedellipview
 
 import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.*
@@ -100,12 +101,12 @@ class LinkedEllipView(ctx : Context) : View(ctx) {
             prev?.draw(canvas, paint)
             val w : Float = canvas.width.toFloat()
             val h : Float = canvas.height.toFloat()
-            val gap : Float = w / LE_NODES
+            val gap : Float = (0.9f * w) / LE_NODES
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = Math.min(w, h) / 60
             paint.color = Color.parseColor("#9b59b6")
             canvas.save()
-            canvas.translate(w/2 + gap/2, h/2)
+            canvas.translate(gap/20 + gap * i + gap/2, h/2)
             canvas.drawArc(RectF(-gap/2, -gap/4, gap/2, gap/4), 180f - 180f * state.scale, 2 * 180f * state.scale, false,paint)
             canvas.restore()
         }
@@ -180,6 +181,7 @@ class LinkedEllipView(ctx : Context) : View(ctx) {
 
     companion object {
         fun create(activity : Activity) {
+            activity.requestedOrientation =  ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             val view = LinkedEllipView(activity)
             activity.setContentView(view)
         }
