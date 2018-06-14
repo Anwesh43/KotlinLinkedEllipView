@@ -101,12 +101,12 @@ class LinkedEllipView(ctx : Context) : View(ctx) {
             prev?.draw(canvas, paint)
             val w : Float = canvas.width.toFloat()
             val h : Float = canvas.height.toFloat()
-            val gap : Float = (0.9f * w) / LE_NODES
+            val gap : Float = (0.95f * w) / LE_NODES
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = Math.min(w, h) / 60
             paint.color = Color.parseColor("#9b59b6")
             canvas.save()
-            canvas.translate(gap/20 + gap * i + gap/2, h/2)
+            canvas.translate(w/40 + gap * i + gap/2, h/2)
             canvas.drawArc(RectF(-gap/2, -gap/4, gap/2, gap/4), 180f - 180f * state.scale, 2 * 180f * state.scale, false,paint)
             canvas.restore()
         }
